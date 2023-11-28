@@ -1,0 +1,18 @@
+default:
+  ip: null
+  mac: null
+  ssh_port: 22
+  serial_connected: false
+  serial_port: null
+  baudrate: 115200
+
+mikrotik_rb2011u1as:
+  ip: 192.168.88.1
+  mac: F44637415168
+  ssh_port: 22
+  serial_connected: true
+  serial_port: /dev/ttyUSB0
+  baudrate: 115200
+
+dummy_device:
+  ip: 127.0.0.1
