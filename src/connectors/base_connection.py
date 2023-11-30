@@ -1,8 +1,9 @@
 import re
 import threading
-import time
+from time import sleep, time
 from abc import ABC, abstractmethod
 
+from config import stdout_logger
 from src.connectors.exceptions import ReadTimeoutError
 
 
@@ -97,17 +98,22 @@ class BaseConnection(ABC):
             self.lock.acquire()
             self.clear_output_buffer()
 
+            stdout_logger.info(f"=> {command}")
             self.writeln(command)
             self.read_until_prompt(timeout)
 
             data = self.read_until_prompt(timeout)
+            stdout_logger.debug(f"Raw response: <{data}>")
             response = self._extract_response(command, data)
 
             self.clear_output_buffer()
         finally:
             self.lock.release()
 
-        return response.strip() if strip else response
+        response = response.strip() if strip else response
+        stdout_logger.info(f"=< {response}")
+
+        return response
 
     def read_until(self, expected: str, timeout: float = 5) -> str:
         """Reads the shell until the expected string
@@ -118,10 +124,10 @@ class BaseConnection(ABC):
         :raise:
             - ReadTimeout: If the expected string is not read in time
         """
-        max_time = time.time() + timeout
+        max_time = time() + timeout
         expected_bytes = expected.encode()
         output = b""
-        while time.time() < max_time:
+        while time() < max_time:
             output += self.read(1)
             if expected_bytes in output:
                 return output.decode()
@@ -135,10 +141,10 @@ class BaseConnection(ABC):
         :raise:
             - ReadTimeout: If the expected string is not read in time
         """
-        max_time = time.time() + timeout
+        max_time = time() + timeout
         regexp = re.compile(expected)
         output = b""
-        while time.time() < max_time:
+        while time() < max_time:
             output += self.read(1)
             try:
                 if regexp.search(output.decode()):
@@ -165,11 +171,11 @@ class BaseConnection(ABC):
         the last read. It is reset every time new data is read
         :param timeout: The timeout
         """
-        max_time = time.time() + timeout
-        while time.time() < max_time:
+        max_time = time() + timeout
+        while time() < max_time:
             if self.output_available():
                 self.read()
-                max_time = time.time() + timeout
+                max_time = time() + timeout
 
     def _extract_response(self, command: str, data: str) -> str:
         """Extract the response from the data read from the shell
@@ -203,4 +209,5 @@ class BaseConnection(ABC):
         self.send_command("beep")
         response = self.send_command("system identity print")
         success = response == "name: MikroTik"
+        stdout_logger.info(f"Initial test finished. Successful: {success}")
         return success, response

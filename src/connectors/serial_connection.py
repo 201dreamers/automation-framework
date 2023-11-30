@@ -1,8 +1,9 @@
 """Library to enable connection to the device through serial"""
-import time
+from time import sleep
 
 import serial
 
+from config import stdout_logger
 from src.connectors.base_connection import BaseConnection
 from src.connectors.exceptions import ConnectionTestError
 
@@ -32,11 +33,14 @@ class SerialConnection(BaseConnection):
 
         self.prompt = self.SHELL_PROMPT
 
-    def check_and_login(self):
+    def login(self):
         # Enter newline to check for login prompt
+        self.writeln()
         self.clear_output_buffer()
         self.writeln()
-        response = self.read(150).decode()
+        sleep(1)
+
+        response = self.read(200).decode()
 
         # Check for login prompt and login
         if "Login: " in response:
@@ -47,28 +51,28 @@ class SerialConnection(BaseConnection):
         else:
             self.writeln()
 
-        self.read_until_prompt()
-
     def open_connection(self):
         """Opens the serial connection
         :raises:
             - ConnectionTestError if the login to the shell and echo command is not
                 successful
         """
+        stdout_logger.info(f"Connecting to device {self.connection.port} {self.connection.baudrate}")
         self.connection.open()
-        self.check_and_login()
+        self.login()
 
         success, response = self._run_test_command()
         if not success:
             raise ConnectionTestError(f"Device connection test failed. Response: {repr(response)}")
+        stdout_logger.success("Connection established\n")
 
     def close_connection(self):
         """Closes the connection."""
+        stdout_logger.info(f"Closing connection to device {self.connection.port}")
         if self.is_connected():
-            self.writeln("stty echo")
             self.clear_output_buffer()
-
         self.connection.close()
+        stdout_logger.success("Connection closed\n")
 
     def is_connected(self) -> bool:
         """Checks the connection status."""
@@ -86,7 +90,7 @@ class SerialConnection(BaseConnection):
         """
         self.connection.write(data.encode())
         self.connection.flush()
-        time.sleep(0.05)  # implicit sleep for all writes
+        sleep(0.05)  # implicit sleep for all writes
 
     def read(self, count: int = 1) -> bytes:
         """Reads the data from the shell"""

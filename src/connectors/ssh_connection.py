@@ -6,8 +6,9 @@ from paramiko import AutoAddPolicy, SSHClient
 from paramiko.channel import Channel
 from paramiko.config import SSHConfig
 
+from config import stdout_logger
 from src.connectors.base_connection import BaseConnection
-from src.connectors.exceptions import ConnectionTestError
+from src.connectors.exceptions import ConnectionTestError, ReadTimeoutError
 
 
 class SSHConnection(BaseConnection):
@@ -62,6 +63,7 @@ class SSHConnection(BaseConnection):
             - ConnectionTestError if the login to the shell and echo command is not
                 successful
         """
+        stdout_logger.info(f"Connecting to device {self.ip_address}:{self.port}")
         self.client.connect(
             hostname=self.ip_address,
             port=self.port,
@@ -78,6 +80,7 @@ class SSHConnection(BaseConnection):
         success, response = self._run_test_command()
         if not success:
             raise ConnectionTestError(f"Device connection test failed. Response: {repr(response)}")
+        stdout_logger.success("Connection established\n")
 
     def is_connected(self) -> bool:
         """Checks the connection status."""
@@ -91,12 +94,14 @@ class SSHConnection(BaseConnection):
 
     def close_connection(self):
         """Closes the connection."""
+        stdout_logger.info(f"Closing connection to device {self.ip_address}:{self.port}")
         if self.is_connected():
             try:
-                self.send_command("exit", timeout=1)
-            except Exception as e:
-                print(e)
+                self.send_command("quit", timeout=1)
+            except ReadTimeoutError:
+                stdout_logger.info("Console is no longer accessible")
         self.client.close()
+        stdout_logger.success("Connection closed\n")
 
     def write(self, data: str):
         """Writes the data to the shell
