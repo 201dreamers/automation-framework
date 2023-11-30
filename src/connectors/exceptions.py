@@ -1,5 +1,4 @@
 """Connection error exceptions"""
-# ruff: disable=too-few-public-methods,missing-docstring,super-init-not-called
 
 
 class Error(Exception):
