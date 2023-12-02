@@ -79,7 +79,7 @@ class SSHConnection(BaseConnection):
 
         success, response = self._run_test_command()
         if not success:
-            raise ConnectionTestError(f"Device connection test failed. Response: {repr(response)}")
+            raise ConnectionTestError(response)
         stdout_logger.success("Connection established\n")
 
     def is_connected(self) -> bool:

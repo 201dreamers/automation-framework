@@ -1,7 +1,7 @@
 import re
-import threading
-from time import sleep, time
 from abc import ABC, abstractmethod
+from threading import Lock
+from time import time
 
 from config import stdout_logger
 from src.connectors.exceptions import ReadTimeoutError
@@ -17,7 +17,7 @@ class BaseConnection(ABC):
     SHELL_PROMPT = r"\[\w+@\w+\] [/\w]*> "
 
     def __init__(self):
-        self.lock = threading.Lock()
+        self.lock = Lock()
 
     def __del__(self):
         """Closes the connection when the object is destroyed."""
@@ -131,8 +131,7 @@ class BaseConnection(ABC):
             output += self.read(1)
             if expected_bytes in output:
                 return output.decode()
-        raise ReadTimeoutError(f"Expected '{expected}' in {timeout} seconds. "
-                               f"Only read '{output.decode().strip()}'")
+        raise ReadTimeoutError(expected, output.decode().strip(), timeout)
 
     def read_until_regexp(self, expected: str, timeout: float = 5):
         """Reads the shell until the regular expression
@@ -151,8 +150,7 @@ class BaseConnection(ABC):
                     return output.decode()
             except UnicodeDecodeError:
                 pass  # Bytes read is not complete
-        raise ReadTimeoutError(f"Expected '{expected}' in {timeout} seconds. "
-                               f"Only read '{output.decode().strip()}'")
+        raise ReadTimeoutError(expected, output.decode().strip(), timeout)
 
     def read_until_prompt(self, timeout: float = 5) -> str:
         """Reads the shell until the shell prompt
