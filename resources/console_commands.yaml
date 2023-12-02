@@ -1,0 +1,13 @@
+beep:
+blink:
+delay:
+put:
+quit:
+ping:
+
+system:
+  reboot:
+  identity:
+    print:
+  clock:
+    print:
