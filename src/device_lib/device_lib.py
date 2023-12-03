@@ -1,11 +1,18 @@
 from yaml import safe_load
 
 from config import DeviceSecrets, FrameworkPaths
-from src.connectors import (BaseConnection, ConnectionType,
-                            NoSuchConnectionTypeError, SerialConnection,
-                            SSHConnection)
-from src.device_lib.exceptions import (NoSuchCommandError, NoSuchDeviceError,
-                                       NoSuchSubCommandError)
+from src.connectors import (
+    BaseConnection,
+    ConnectionType,
+    NoSuchConnectionTypeError,
+    SerialConnection,
+    SSHConnection
+)
+from src.device_lib.exceptions import (
+    NoSuchCommandError,
+    NoSuchDeviceError,
+    NoSuchSubCommandError
+)
 from src.devices import DEVICES
 
 
