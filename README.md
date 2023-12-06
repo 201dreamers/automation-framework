@@ -1,17 +1,32 @@
-### Installation and Configuration Instructions:
+## Installation and Configuration Instructions:
 
-#### General Functionality Overview
+## Table of Contents
+
+- [Installation and Configuration Instructions:](#installation-and-configuration-instructions)
+  - [General Functionality Overview](#general-functionality-overview)
+    - [Related docs to read:](#related-docs-to-read)
+    - [Project structure](#project-structure)
+  - [Cloning the Repository using SSH:](#cloning-the-repository-using-ssh)
+- [Storing Sensitive Data](#storing-sensitive-data)
+- [Creating a Virtual Environment and Installing Dependencies](#creating-a-virtual-environment-and-installing-dependencies)
+
+
+### General Functionality Overview
 This instruction covers a framework based on "pytest," which is the foundation of this repository. "Pytest" is a tool for automated software testing in general. The framework developed herein is built on top of it and includes a set of functional capabilities to simplify testing and integration with testing devices.
 
 The system has a well-defined file structure and provides core functionalities for interacting with testing devices.
 
-##### Related docs to read:
+#### Related docs to read:
 [Code Formatting](https://github.com/201dreamers/automation-framework/blob/main/docs/code_formatting.md)
+
 [Reporting](https://github.com/201dreamers/automation-framework/blob/main/docs/reporting.md)
+
 [Running Tests](https://github.com/201dreamers/automation-framework/blob/main/docs/running_tests.md)
+
 [Working with Git](https://github.com/201dreamers/automation-framework/blob/main/docs/working_with_git.md)
 
-Project structure
+
+#### Project structure
 ```
 .
 ├── config
