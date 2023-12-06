@@ -4,37 +4,52 @@
 This instruction covers a framework based on "pytest," which is the foundation of this repository. "Pytest" is a tool for automated software testing in general. The framework developed herein is built on top of it and includes a set of functional capabilities to simplify testing and integration with testing devices.
 
 The system has a well-defined file structure and provides core functionalities for interacting with testing devices.
+
+##### Related docs to read:
+[Code Formatting](https://github.com/201dreamers/automation-framework/blob/main/docs/code_formatting.md)
+[Reporting](https://github.com/201dreamers/automation-framework/blob/main/docs/reporting.md)
+[Running Tests](https://github.com/201dreamers/automation-framework/blob/main/docs/running_tests.md)
+[Working with Git](https://github.com/201dreamers/automation-framework/blob/main/docs/working_with_git.md)
+
+Project structure
 ```
-    ├── config
-    │   ├── device_secrets.py
-    │   ├── __init__.py
-    │   ├── loggers.py
-    │   └── paths.py
-    ├── pytest.ini
-    ├── README.md
-    ├── resources
-    │   ├── console_commands.yaml
-    │   ├── devices.yaml
-    │   ├── lib
-    │   └── testdata
-    ├── src
-    │   ├── connectors
-    │   │   ├── base_connection.py
-    │   │   ├── exceptions.py
-    │   │   ├── __init__.py
-    │   │   ├── serial_connection.py
-    │   │   └── ssh_connection.py
-    │   ├── device_lib
-    │   │   ├── device_lib.py
-    │   │   └── exceptions.py
-    │   └── devices
-    │       ├── device_parser.py
-    │       └── __init__.py
-    └── tests
-        ├── conftest.py
-        └── framework_checks
-            └── smoke_test.py
+.
+├── config
+│   ├── device_secrets.py
+│   ├── __init__.py
+│   ├── loggers.py
+│   └── paths.py
+├── docs
+│   ├── code_formatting.md
+│   ├── reporting.md
+│   ├── running_tests.md
+│   └── working_with_git.md
+├── pytest.ini
+├── README.md
+├── resources
+│   ├── console_commands.yaml
+│   ├── devices.yaml
+│   ├── lib
+│   └── testdata
+├── src
+│   ├── connectors
+│   │   ├── base_connection.py
+│   │   ├── exceptions.py
+│   │   ├── __init__.py
+│   │   ├── serial_connection.py
+│   │   └── ssh_connection.py
+│   ├── device_lib
+│   │   ├── device_lib.py
+│   │   └── exceptions.py
+│   └── devices
+│       ├── device_parser.py
+│       └── __init__.py
+└── tests
+    ├── conftest.py
+    └── framework_checks
+        └── smoke_test.py
 ```
+
 The core functionality of the framework includes:
 
 1. Ability to establish a connection with a testing device via SSH or Serial connection. This allows automated testing on devices while preserving configurations and settings. Additionally, it is possible to extend connection types if necessary, as the architecture used allows for this flexibility.
