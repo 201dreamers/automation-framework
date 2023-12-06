@@ -1,5 +1,15 @@
-### Repository Workflow Rules
+## Repository Workflow Rules
 
+## Table of Contents
+
+- [Repository Workflow Rules](#repository-workflow-rules)
+  - [Branch Naming](#branch-naming)
+  - [Committing Changes](#committing-changes)
+  - [Pushing Changes](#pushing-changes)
+  - [Creating a Pull Request (PR)](#creating-a-pull-request-pr)
+    - [PR Template](#pr-template)
+
+### Branch naming
 The branch name should always start with the task number. This allows tracking changes in the tracking system. To create a branch, execute the following commands in the root folder of the repository:
 
 ```bash
@@ -8,6 +18,7 @@ git checkout -b <TICKET-XXX_NEW_BRANCH_NAME>
 
 The NEW_BRANCH_NAME could be a brief ticket description to facilitate branch search. Allowed characters for branch name: underscores, dashes, slashes, and alphanumeric characters. For example: PROJ-123_fix_connection_issue
 
+### Committing changes
 Before committing changes, it's essential to stage the files. To preview the changes that can be committed, use git status. The list of files will be listed under the header "Changes not staged for commit."
 
 To add files to commit, you can use:
@@ -23,6 +34,7 @@ After staging files for commit, execute the command, mentioning the task number 
 git commit -m "TICKET-XXX <COMMIT MESSAGE>"
 ```
 
+### Pushing changes
 To send changes to the remote repository and set up tracking, execute the following on your local branch:
 
 ```bash
@@ -33,13 +45,13 @@ This will send your local branch to the remote repository and set up tracking fo
 
 Once the branch is set to track the remote one, for all future cases, use git push.
 
-### Creating a Pull Request (PR)
+## Creating a Pull Request (PR)
 
 To create a PR on GitHub, navigate to the Pull requests tab and click on New pull request in the upper right corner. Then, select the base branch and choose the target branch (usually master or main). It will display the differences, showcasing modified files and commits. Click Create pull request and add relevant reviewers to the merge request, selecting the cog icon in the right sidebar.
 
 In the description of this request, it's essential to fill in the following template, allowing all reviewers to quickly understand the purpose of this pull request and the changes present in it. This reduces the time spent on review and helps conserve team resources.
 
-#### PR template:
+### PR template:
 <!-- Update ticket number, hyperlink will automatically form -->
 PROJ-XXX
 

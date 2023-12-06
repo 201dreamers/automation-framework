@@ -1,6 +1,15 @@
-### Code Formatting Rules
+## Code Formatting Rules
 
-#### PEP8
+## Table of Contents
+
+- [Code Formatting Rules](#code-formatting-rules)
+  - [PEP8](#pep8)
+  - [pytest](#pytest)
+  - [Functions and Modules](#functions-and-modules)
+  - [Testing](#testing)
+
+
+### PEP8
 
 Adhering to PEP 8 standards (Python's code style guide) is mandatory. PEP 8 is an official document containing recommendations for Python code style. It defines formatting rules, spacing, variable naming, comments, and other conventions that help create readable and consistent code in projects.
 
@@ -25,13 +34,13 @@ The guidelines include:
 17. Code should be understandable for other team members, prioritize code clarity over brevity.
 18. Include comments and documentation for functions, especially if their purpose is not obvious.
 
-#### pytest
+### pytest
 
 1. Write clean and well-organized test code.
 2. Use the pytest-check plugin to verify test result expectations if a test has more than two checks.
 3. Provide understandable names for the tests they verify. Each test suite's name should start or end with test_ or _test, respectively.
 
-#### Functions and Modules
+### Functions and Modules
 
 1. Functions should perform a single specific task. Adhere to the Single Responsibility Principle.
 2. Modules should be logically organized and contain related functionality.
@@ -40,7 +49,7 @@ The guidelines include:
 5. Use modularity and code reuse, avoid code duplication.
 6. Use Git for version control. Code should be stored and documented in the version control system.
 
-#### Testing
+### Testing
 
 1. Ensure all tests complete successfully before merging into the main branch.
 2. Ensure all tests are working and cover necessary scenarios.

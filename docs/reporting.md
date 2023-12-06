@@ -1,4 +1,4 @@
-### Saving, Viewing, and Distributing pytest-allure Reports
+## Saving, Viewing, and Distributing pytest-allure Reports
 
 Pytest-allure generates testing reports in the Allure format, containing information about executed tests, their statuses, logs, screenshots, and other details necessary for analyzing test results.
 

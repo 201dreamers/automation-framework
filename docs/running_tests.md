@@ -1,4 +1,4 @@
-### Running Tests and pytest Options
+## Running Tests and pytest Options
 
 Within the pytest framework, there are several diverse options providing capabilities to manage and configure the test execution process. Below are the most commonly used options during daily runs:
 
