@@ -17,13 +17,10 @@ This instruction covers a framework based on "pytest," which is the foundation o
 The system has a well-defined file structure and provides core functionalities for interacting with testing devices.
 
 #### Related docs to read:
-[Code Formatting](https://github.com/201dreamers/automation-framework/blob/main/docs/code_formatting.md)
-
-[Reporting](https://github.com/201dreamers/automation-framework/blob/main/docs/reporting.md)
-
-[Running Tests](https://github.com/201dreamers/automation-framework/blob/main/docs/running_tests.md)
-
-[Working with Git](https://github.com/201dreamers/automation-framework/blob/main/docs/working_with_git.md)
+- [Code Formatting](https://github.com/201dreamers/automation-framework/blob/main/docs/code_formatting.md)
+- [Reporting](https://github.com/201dreamers/automation-framework/blob/main/docs/reporting.md)
+- [Running Tests](https://github.com/201dreamers/automation-framework/blob/main/docs/running_tests.md)
+- [Working with Git](https://github.com/201dreamers/automation-framework/blob/main/docs/working_with_git.md)
 
 
 #### Project structure
